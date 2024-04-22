@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<title>Log In</title>
+	</head>
+	<body>
+		<form method="POST">
+			{% csrf_token %}
+			<div>
+				<div>
+					{% if signin %}
+					<h1>Sign In</h1>
+					{% else %}
+					<h1>Log In</h1>
+					{% endif %} {% if error %}
+					<span>Invalid LogIn</span>
+					{% endif %}
+				</div>
+				<div class="inputdiv">
+					<i class="fas fa-user"></i>
+					<input
+						type="text"
+						name="username"
+						required
+						placeholder="Username"
+					/>
+				</div>
+				{% if signin %}
+				<div class="inputdiv">
+					<i class="fas fa-envelope"></i>
+					<input
+						type="email"
+						name="email"
+						required
+						placeholder="Email"
+					/>
+				</div>
+				{% endif %}
+				<div class="inputdiv">
+					<i class="fas fa-lock"></i>
+					<input
+						type="password"
+						name="password"
+						required
+						placeholder="Password"
+					/>
+				</div>
+				{% if signin %}
+				<select class="selectdiv" name="movieGenre" required>
+					<option value="" selected hidden>Fav Movie Genre</option>
+					{% for genre in MovieGenres %}
+					<option value="{{genre}}">{{genre}}</option>
+					{% endfor %}
+				</select>
+				{% endif %}
+			</div>
+			<div class="bottomdiv">
+				{% if signin %}
+				<a href="/login">I already have an account!</a>
+				{% else %}
+				<a href="/signin">I don't yet have an account!</a>
+				{% endif %}
+				<button>
+					{% if signin %} Sign In {% else %} Log In {% endif %}
+					<i class="fas fa-arrow-right"></i>
+				</button>
+			</div>
+		</form>
+	</body>
+</html>

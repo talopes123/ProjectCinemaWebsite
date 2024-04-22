@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/delete.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>
+			{% if Movies %} Select Movie to Delete {% else %} No Movies At the
+			moment! {% endif %}
+		</h1>
+	</div>
+	<div class="content">
+		{% if Movies %}
+		<form method="POST">
+			{% csrf_token %}
+			<select name="Movie">
+				<option value="default" disabled hidden selected>
+					Select Movie
+				</option>
+				{% for Movie in Movies %}
+				<option value="{{Movie.id}}">
+					({{Movie.id}}) {{Movie.ShortName}}
+				</option>
+				{% endfor %}
+			</select>
+			<button type="submit">Submit</button>
+		</form>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

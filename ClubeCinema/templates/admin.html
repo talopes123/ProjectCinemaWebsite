@@ -1,0 +1,136 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>Database Models</h1>
+	</div>
+	<div class="content">
+		<div class="model">
+			<h1>
+				<a class="icon icon-times" href="/deleteUser/"
+					><i class="fas fa-times"></i
+				></a>
+				User
+				<a class="icon icon-plus" href="/signin"
+					><i class="fas fa-plus"></i
+				></a>
+			</h1>
+			<div class="content">
+				{% for User in Users %}
+				<div class="user row">
+					<div class="row-wrapper">
+						<div>Id: <span>{{User.id}}</span></div>
+						<div>Username: <span>{{User.username}}</span></div>
+						<div>Email: <span>{{User.email}}</span></div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="model">
+			<h1>Profile</h1>
+			<div class="content">
+				{% for Profile in Profiles %}
+				<div class="profile row">
+					<div class="row-wrapper">
+						<div>
+							User:
+							<span
+								>({{Profile.User.id}})
+								{{Profile.User.username}}</span
+							>
+						</div>
+						<div>
+							FavMovieGenre:
+							<span>{{Profile.FavMovieGenre}}</span>
+						</div>
+						<div>UserLevel: <span>{{Profile.UserLevel}}</span></div>
+						<div>CreatedAt: <span>{{Profile.CreatedAt}}</span></div>
+						<div>
+							NumberOfRatings:
+							<span>{{Profile.NumberOfRatings}}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="model">
+			<h1>
+				<a class="icon icon-times" href="/deleteMovie/"
+					><i class="fas fa-times"></i
+				></a>
+				Movie
+				<a class="icon icon-plus" href="/newMovie"
+					><i class="fas fa-plus"></i
+				></a>
+			</h1>
+			<div class="content">
+				{% for Movie in Movies %}
+				<div class="movie row">
+					<div class="row-wrapper">
+						<div>
+							Movie:
+							<span>({{Movie.id}}) {{Movie.ShortName}}</span>
+						</div>
+						<div>
+							Movie Length:
+							<span>{{Movie.getMovieLength}}</span>
+						</div>
+						<div>
+							Average Rating:
+							<span>{{Movie.AverageRating}}</span>
+						</div>
+						<div>
+							Number Of Ratings:
+							<span>{{Movie.NumberOfRatings}}</span>
+						</div>
+						<div>
+							Released At: <span>{{Movie.ReleaseDate}}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="model">
+			<h1>
+				<a class="icon icon-times" href="/deleteRating/"
+					><i class="fas fa-times"></i
+				></a>
+				Rating
+				<a class="icon icon-plus" href="/"
+					><i class="fas fa-plus"></i
+				></a>
+			</h1>
+			<div class="content">
+				{% for Rating in Ratings %}
+				<div class="rating row">
+					<div class="row-wrapper">
+						<div>
+							User:
+							<span
+								>({{Rating.id}})
+								{{Rating.Profile.User.username}}</span
+							>
+						</div>
+						<div>
+							Movie: <span>{{Rating.Movie.ShortName}}</span>
+						</div>
+						<div>Rating: <span>{{Rating.Rating}}</span></div>
+						<div>RateddAt: <span>{{Rating.RatedAt}}</span></div>
+						{% if Rate.Description %}
+						<div>
+							Description: <span>{{Rating.Description}}</span>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

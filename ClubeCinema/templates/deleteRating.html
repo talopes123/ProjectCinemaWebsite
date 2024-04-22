@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/delete.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>
+			{% if Movies %} Select Rate to Delete {% else %} No Ratings At the
+			moment! {% endif %}
+		</h1>
+	</div>
+	<div class="content Rate-content">
+		{% if Ratings %}
+		<form method="POST" novalidate>
+			{% csrf_token %}
+			<div name="Ratings" class="Ratings">
+				{% for Rate in Ratings %}
+				<div class="rate-div">
+					<input
+						type="radio"
+						name="Rate"
+						id="{{Rate.id}}"
+						value="{{Rate.id}}"
+					/>
+					<label name="Rate" for="{{Rate.id}}">
+						<div>
+							User:
+							<span>({{Rate.id}}) {{Rate.User.username}}</span>
+						</div>
+						<div>Movie: <span>{{Rate.Movie.ShortName}}</span></div>
+						<div>
+							Rate:
+							<span>
+								{% with ''|center:Rate.Rating as range %} 
+									{% for i in range%}
+										<i class="fas fa-star"></i>
+									{% endfor %} 
+								{% endwith %}
+							</span>
+						</div>
+						<div>RatedAt: <span>{{Rate.RatedAt}}</span></div>
+						{% if Rate.Description %}
+						<div>
+							Description: <span>{{Rate.Description}}</span>
+						</div>
+						{% endif %}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

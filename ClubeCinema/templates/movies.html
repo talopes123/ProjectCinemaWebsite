@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/movies.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>Movies List</h1>
+	</div>
+	<div class="content">
+		{% for Movie in Movies %}
+		<a class="movie" href="/movies/{{Movie.id}}/rate">
+			<div>
+				<b>Movie:</b>
+				<span>({{Movie.id}}) {{Movie.ShortName}}</span>
+			</div>
+			<div>
+				<b>Movie Length:</b>
+				<span>{{Movie.getMovieLength}}</span>
+			</div>
+			<div class="description">
+				<p>
+					<b>Description:</b>
+					<br />
+					{{Movie.Description}}
+				</p>
+			</div>
+			<div>
+				<b>Average Rating:</b>
+				<span>{{Movie.AverageRating}}</span>
+			</div>
+			<div>
+				<b>Number Of Ratings:</b>
+				<span>{{Movie.NumberOfRatings}}</span>
+			</div>
+			<div><b>Released At: </b> <span>{{Movie.ReleaseDate}}</span></div>
+		</a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

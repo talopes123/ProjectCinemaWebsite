@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/delete.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>Select User to Delete</h1>
+	</div>
+	<div class="content">
+		<form method="POST">
+			{% csrf_token %}
+			<select name="User">
+				<option value="default" disabled hidden selected>
+					Select user
+				</option>
+				{% for User in Users %}
+				<option value="{{User.id}}">
+					({{User.id}}) {{User.username}}
+				</option>
+				{% endfor %}
+			</select>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

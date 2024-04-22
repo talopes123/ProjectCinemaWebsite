@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+
+
+<link rel="stylesheet" href="{% static 'css/movieRate.css' %}" />
+<div class="wrapper">
+	<div class="header">
+		<h1>Movie Rate</h1>
+	</div>
+	<div class="content">
+		<div class="movie">
+			<div>
+				<span class="subTitle">Movie:</span>
+				<span>({{Movie.id}}) {{Movie.ShortName}}</span>
+			</div>
+			<div>
+				<span class="subTitle">Movie Length:</span>
+				<span>{{Movie.getMovieLength}}</span>
+			</div>
+			<div class="description">
+				<p>
+					<span class="subTitle">Description:</span>
+					<br />
+					{{Movie.Description}}
+				</p>
+			</div>
+			<div>
+				<span class="subTitle">Average Rating:</span>
+				<span>{{Movie.AverageRating}}</span>
+			</div>
+			<div>
+				<span class="subTitle">Number Of Ratings:</span>
+				<span>{{Movie.NumberOfRatings}}</span>
+			</div>
+			<div>
+				<span class="subTitle">Released At:</span>
+				<span>{{Movie.ReleaseDate}}</span>
+			</div>
+		</div>
+		{% if loggedIn %}
+		<form method="POST">
+			{% csrf_token %} {{form}} <button type="submit">Submit</button>
+		</form>
+		{% endif %}
+	</div>
+</div>
+
+
+
+{% endblock %}

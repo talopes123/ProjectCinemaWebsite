@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/profiles.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>Profiles</h1>
+	</div>
+	<div class="content">
+		{% for Profile in Profiles %}
+		<a class="Profile" href="/profile/{{Profile.id}}">
+			<div>
+				Name:
+				<span>{{Profile.User.username}}</span>
+			</div>
+			<div>
+				FavMovieGenre:
+				<span>{{Profile.FavMovieGenre}}</span>
+			</div>
+			<div>
+				NumberOfRatings:
+				<span>{{Profile.NumberOfRatings}}</span>
+			</div>
+			<div>
+				Created:
+				<span>{{Profile.CreatedAt|timesince}}</span>
+				ago
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

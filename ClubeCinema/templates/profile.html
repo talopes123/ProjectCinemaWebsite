@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+<div class="wrapper">
+	<div class="header">
+		<h1>{{Profile.User.username}}'s Profile</h1>
+	</div>
+	<div class="content">
+		<div class="Profile">
+			<div class="info">
+				<div>
+					<b>UserName:</b>
+					<span>{{Profile.User.username}}</span>
+				</div>
+				<div>
+					<b>Email:</b>
+					<span>{{Profile.User.email}}</span>
+				</div>
+				<div>
+					<b>FavMovieGenre:</b>
+					<span>{{Profile.FavMovieGenre}}</span>
+				</div>
+				<div>
+					<b>UserLevel:</b>
+					<span>{{Profile.UserLevel}}</span>
+				</div>
+				<div>
+					<b>CreatedAt:</b>
+					<span>{{Profile.CreatedAt|timesince}} ago</span>
+				</div>
+				<div>
+					<b>NumberOfRatings:</b>
+					<span>{{Profile.NumberOfRatings}}</span>
+				</div>
+			</div>
+			<div class="rates">
+				{% for Rate in Ratings %}
+				<div class="Rate">
+					<div>Movie: <span>{{Rate.Movie.ShortName}}</span></div>
+					<div>
+						Rate:
+						<span>
+							{% with ''|center:Rate.Rating as range %} 
+								{% for i in range%}
+									<i class="fas fa-star"></i>
+								{% endfor %} 
+							{% endwith %}
+						</span>
+					</div>
+					<div>RatedAt: <span>{{Rate.RatedAt}}</span></div>
+					{% if Rate.Description %}
+					<div>Description: <span>{{Rate.Description}}</span></div>
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

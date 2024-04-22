@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+		<title>Clube de Cinema</title>
+	</head>
+	<body>
+		<nav>
+			<div class="left">
+				<a href="/"> <button>Clube de Cinema</button></a>
+				<a href="/ratings"> <button>Ratings</button></a>
+			</div>
+			<div class="rigth">
+				<a href="/profiles"> <button>Profiles</button></a>
+				{% if isAdmin %}
+				<a href="/admin"> <button>Admin</button></a>
+				{% endif %} {% if not loggedIn %}
+				<a href="/login"> <button>Log In</button></a>
+				{% else %}
+
+				{% for Profile in Profiles %}
+				{% if Profile.User.username == User.username %}
+				<a href="/profile/{{Profile.id}}">
+					<button>{{User.username}}</button></a>
+				{% endif %}
+				{% endfor %}
+
+
+				<a href="/logOut"> <button>Log Out</button></a>
+				{% endif %}
+			</div>
+		</nav>
+		<div class="content">{% block body %} {% endblock %}</div>
+	</body>
+</html>

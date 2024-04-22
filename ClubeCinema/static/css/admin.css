@@ -1,0 +1,128 @@
+body .wrapper {
+	width: 100vw;
+	height: calc(100vh - var(--nav-height));
+	position: absolute;
+	top: var(--nav-height);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: Calibri;
+}
+
+.wrapper .header {
+	flex: 0.1;
+}
+.wrapper .header h1 {
+	font-size: 40px;
+	font-family: Calibri;
+	margin: 20px 0 20px 0;
+}
+
+.wrapper > .content {
+	flex: 0.9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90vw;
+	overflow-y: overlay;
+}
+.wrapper > .content::-webkit-scrollbar {
+	width: 6px;
+	position: absolute;
+}
+.wrapper > .content::-webkit-scrollbar-thumb {
+	background-color: transparent;
+	border-radius: 10px;
+}
+.wrapper > .content:hover::-webkit-scrollbar-thumb {
+	background-color: purple;
+}
+.wrapper .content .model {
+	margin: 0 1rem 0 1rem;
+	height: 90%;
+	max-height: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+	flex: 0.25;
+	border-radius: 10px;
+}
+.wrapper .content .model:hover {
+	background-color: rgb(44, 44, 44);
+}
+.wrapper .content .model:hover h1 {
+	color: white;
+}
+.wrapper .content .model:hover .content .row {
+	background-color: white;
+}
+.wrapper .content .model h1 {
+	font-size: 35px;
+	font-family: Calibri;
+	margin: 20px 0 20px 0;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 80%;
+}
+.wrapper .content .model h1 .icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	padding: 5px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+.wrapper .content .model h1 .icon:hover {
+	background-color: rgb(83, 83, 83);
+}
+.wrapper .content .model h1 .icon-plus {
+	color: #28a745;
+}
+.wrapper .content .model h1 .icon-times {
+	color: #dc3545;
+}
+.wrapper .content .model .content {
+	width: 80%;
+	overflow-y: overlay;
+	border-radius: 5px;
+}
+.wrapper .content .model .content::-webkit-scrollbar {
+	width: 6px;
+	position: absolute;
+}
+.wrapper .content .model .content::-webkit-scrollbar-thumb {
+	background-color: transparent;
+	border-radius: 10px;
+}
+.wrapper .content .model:hover .content::-webkit-scrollbar-thumb {
+	background-color: purple;
+}
+.wrapper .content .model .content .row {
+	width: 100%;
+	background-color: rgb(83, 83, 83);
+	border-radius: 5px;
+	padding: 10px 0 10px 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+.wrapper .content .model .content .row:hover {
+	background-color: cadetblue;
+}
+.wrapper .content .model .content .row .row-wrapper {
+	margin-left: 10px;
+}
+.wrapper .content .model .content .user {
+	height: 50px;
+}
+.wrapper .content .model .content .profile {
+}
+.wrapper .content .model .content .movie {
+}
+.wrapper .content .model .content .rating {
+}
